@@ -3,11 +3,13 @@ const { createAudioPlayer, createAudioResource, joinVoiceChannel, AudioPlayerSta
 const ytdl = require('ytdl-core');
 const { token } = require('./token.json');
 const { prefix } = require('./config.json');
+
 const client = new Client({intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_VOICE_STATES
     ]});
+
 class Music {
     isPlaying = false;
     connection = null;
