@@ -13,6 +13,7 @@ const client = new Client({intents: [
 class Music {
     isPlaying = false;
     connection = null;
+    stream = null;
     queue = [];
     player = createAudioPlayer();
     //join
@@ -81,7 +82,8 @@ class Music {
                     .setTimestamp()
             ]});
         //play track
-        this.player.play(createAudioResource(ytdl(musicInfo.url, { filter: 'audioonly' })));
+        this.stream = ytdl(musicInfo.url, { filter: 'audioonly' });
+        this.player.play(createAudioResource(this.stream));
         //remove track from queue
         this.queue.shift();
         //even after playing a track
