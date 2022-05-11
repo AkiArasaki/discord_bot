@@ -81,6 +81,7 @@ class Music {
                     .setTimestamp()
             ]});
         //play track
+        this.player.stop();
         this.player.play(createAudioResource(ytdl(musicInfo.url, { filter: 'audioonly' })));
         //remove track from queue
         this.queue.shift();
@@ -171,6 +172,8 @@ class Music {
         if (this.connection != null && this.connection.state.status !== "destroyed") {
             //destroy connection and leave channel
             this.connection.destroy();
+            //clear player
+            this.player.stop();
             //clear queue
             this.queue = [];
             //set isPlaying to false
